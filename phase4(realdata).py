@@ -1,0 +1,21 @@
+import pandas as pd
+movies=pd.read_csv("tmdb_5000_movies.csv")
+credits=pd.read_csv("tmdb_5000_credits.csv")
+#print(movies.columns)
+#print(movies.head())
+#print(credits.head())
+#rint(movies.shape)
+#print(credits.shape)
+movies=movies.merge(credits,on="title")
+movies=movies[[
+   "movie_id",
+    "title",
+    "overview",
+    "genres",
+    "keywords",
+    "cast",
+    "crew"
+]]
+print(movies.head())
+movies.dropna(inplace=True)
+print(movies.isnull().sum())
