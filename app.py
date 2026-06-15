@@ -14,8 +14,11 @@ def recommend(movie):
 
   movie_list=sorted(distance,reverse=True,key=lambda x:x[1])[1:6]
   print("\nTop movie recommendation\n")
-  for i in movie_list:
-    print(movies.iloc[i[0]].title)
+  for index,movie_data in enumerate(movie_list,start=1):
+    movie_index=movie_data[0]
+    similarity_score=round(movie_data[1]*100,2)
+    title=movies.iloc[movie_index].title
+    print(f"{index}. {title} -> {similarity_score}% match")
 
 movie=input("Enter the movie name :").lower()
 recommend(movie)
